@@ -81,7 +81,7 @@
                                 <div class="form-group">
                                     <li class="fa fa-gears">&nbsp;&nbsp;</li>
                                     <label>User Status</label>
-                                    <select class="form-control m-b-sm input-rounded" name="status_id" required="">
+                                    <select class="form-control m-b-sm input-rounded" name="is_active" required="">
                                         <option value="" disabled selected>Select Status</option>
                                         <option value="1">Active</option>
                                         <option value="0">De-Active</option>

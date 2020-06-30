@@ -20,8 +20,7 @@ class Welcome extends CI_Controller
 
 
 		$this->load->view('header');
-		$image_list['image'] = $this->mlogin->select_randam_image();
-		$this->load->view('login', $image_list);
+		$this->load->view('login');
 //		$this->load->view('footer');
 	}
 

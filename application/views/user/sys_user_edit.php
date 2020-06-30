@@ -96,11 +96,11 @@
 								<div class="form-group">
 									<li class="fa fa-gears">&nbsp;&nbsp;</li>
 									<label>User Status</label>
-									<select class="form-control m-b-sm input-rounded" name="status_id" required="">
+									<select class="form-control m-b-sm input-rounded" name="is_active" required="">
 
-										<option <?php if ($info->status_id == 1) echo "Selected"; ?> value="1">Active
+										<option <?php if ($info->is_active == 1) echo "Selected"; ?> value="1">Active
 										</option>
-										<option <?php if ($info->status_id == 0) echo "Selected"; ?> value="0">
+										<option <?php if ($info->is_active == 0) echo "Selected"; ?> value="0">
 											De-Active
 										</option>
 

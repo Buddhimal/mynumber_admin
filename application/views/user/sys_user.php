@@ -59,7 +59,7 @@
 								<td><?php echo $users->name ?></td>
 								<td><?php echo $users->email ?></td>
 								<td align="center">
-									<?php if ($users->status_id == 1) echo "<span class='right badge badge-success'>Active</span>"; else echo "<span class='right badge badge-danger'>De-Active</span>"; ?>
+									<?php if ($users->is_active == 1) echo "<span class='right badge badge-success'>Active</span>"; else echo "<span class='right badge badge-danger'>De-Active</span>"; ?>
 								</td>
 
 							</tr>
@@ -142,7 +142,7 @@
 					<div class="form-group">
 						<li class="fa fa-gears">&nbsp;&nbsp;</li>
 						<label>User Status</label>
-						<select class="form-control m-b-sm input-rounded" name="status_id" required="">
+						<select class="form-control m-b-sm input-rounded" name="is_active" required="">
 							<option value="" disabled selected>Select Status</option>
 							<option value="1">Active</option>
 							<option value="0">De-Active</option>

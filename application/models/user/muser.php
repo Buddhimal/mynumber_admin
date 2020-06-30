@@ -11,24 +11,25 @@ class Muser extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('mmodel');
 
     }
 
     public function get_sys_user_list()
     {
-        $this->db->select('sys_user.user_id,sys_user.username,sys_user_group.user_group,sys_user.name,sys_user.email,sys_user.status_id');
-        $this->db->from('sys_user');
-        $this->db->join('sys_user_group', 'sys_user_group.user_group_id = sys_user.user_group_id');
+        $this->db->select('sysadmin.user_id,sysadmin.username,sys_user_group.user_group,sysadmin.name,sysadmin.email,sysadmin.is_active');
+        $this->db->from('sysadmin');
+        $this->db->join('sys_user_group', 'sys_user_group.user_group_id = sysadmin.user_group_id');
         return $this->db->get();
 
     }
 
     public function get_user_details($user_id)
     {
-        $this->db->select('sys_user.*,sys_user_group.*,0 AS restaurant_details,0 AS hotel_details,0 AS pendings');
-        $this->db->from('sys_user');
-        $this->db->join('sys_user_group', 'sys_user_group.user_group_id = sys_user.user_group_id');
-        $this->db->where('sys_user.user_id', $user_id);
+        $this->db->select('sysadmin.*,sys_user_group.*,0 AS restaurant_details,0 AS hotel_details,0 AS pendings');
+        $this->db->from('sysadmin');
+        $this->db->join('sys_user_group', 'sys_user_group.user_group_id = sysadmin.user_group_id');
+        $this->db->where('sysadmin.user_id', $user_id);
         $results = $this->db->get()->result();
         foreach ($results as $data) {
             $this->db->select('business_partners.*,0 AS image_path');
@@ -86,7 +87,7 @@ class Muser extends CI_Model
     public function check_valide_username($username_input_text)
     {
         $this->db->select('username');
-        $this->db->from('sys_user');
+        $this->db->from('sysadmin');
         $this->db->where('username', $username_input_text);
 
         if ($this->db->get()->num_rows() == 1) {
@@ -98,7 +99,15 @@ class Muser extends CI_Model
     }
     public function addnew_sys_user($post_data)
     {
-        if ($this->db->insert('sys_user', $post_data)) {
+        $id = trim($this->mmodel->getGUID(), '{}');
+        $post_data['user_id']=$id;
+        $post_data['is_deleted']=0;
+        $post_data['updated']=0;
+        $post_data['created']=0;
+        $post_data['updated_by']=$id;
+        $post_data['created_by']=$id;
+
+        if ($this->db->insert('sysadmin', $post_data)) {
             return true;
         } else {
             return false;
@@ -108,7 +117,7 @@ class Muser extends CI_Model
     public function get_edit_user($edit_user_id)
     {
         $this->db->select('*');
-        $this->db->from('sys_user');
+        $this->db->from('sysadmin');
         $this->db->where('user_id', $edit_user_id);
         $query = $this->db->get();
         return $query;
@@ -118,7 +127,7 @@ class Muser extends CI_Model
     {
         $post_data['password'] = md5($post_data['password']);
         $this->db->where('user_id', $edit_user_id);
-        $this->db->update('sys_user', $post_data);
+        $this->db->update('sysadmin', $post_data);
         return $this->db->last_query();
 
         return true;
@@ -177,7 +186,7 @@ class Muser extends CI_Model
     public function get_user_list()
     {
         $this->db->select('*,0 AS user_details');
-        $this->db->from('sys_user');
+        $this->db->from('sysadmin');
         $this->db->where('user_group_id', HOTEL_ADMIN);
         $query = $this->db->get()->result();
         foreach ($query as $user) {

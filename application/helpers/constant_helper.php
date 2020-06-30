@@ -35,14 +35,6 @@ foreach ($query->result() as $row)
     define($row->module_const,$row->module_id);
 }
 
-/* STATUSES */
-$query = $this->ci->db->get('status');
-
-foreach ($query->result() as $row)
-{
-    define($row->status_const,$row->status_id);
-}
-
 
 /* SYSTEM USER GROUPS */
 define("SYS_ROOT_GROUP",1);
