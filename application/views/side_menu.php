@@ -7,7 +7,7 @@ if(!isset($active_main_tab))
 //die();
 ?>
 
-<aside class="main-sidebar sidebar-dark-success elevation-4">
+<aside class="main-sidebar sidebar-dark-danger elevation-4">
 	<!-- Brand Logo -->
 	<a href="#" class="brand-link">
 		<img src="<?php echo base_url()?>dist/img/mn-logo.png" alt="AdminLTE Logo" class="brand-image elevation-3"

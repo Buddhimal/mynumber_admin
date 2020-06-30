@@ -7,7 +7,8 @@ class user extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user/muser');
-        $this->load->model('mloging');
+        $this->load->model('user/mlogin');
+//        $this->load->model('mloging');
 
 		if (is_login() == '') {
 			$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -29,7 +30,7 @@ class user extends CI_Controller
 		$this->load->view('side_menu');
 
 
-		if ($this->mloging->get_permission(SYS_USER_LIST_VIWE)) {
+		if ($this->mlogin->get_permission(SYS_USER_LIST_VIWE)) {
 
             $data['user_list'] = $this->muser->get_sys_user_list();
             $data['msg'] = "";
@@ -51,7 +52,7 @@ class user extends CI_Controller
 		$this->load->view('top_header',$object);
 		$this->load->view('side_menu');
 
-        if ($this->mloging->get_permission(SYS_USER_ADD_NEW_PAGE)) {
+        if ($this->mlogin->get_permission(SYS_USER_ADD_NEW_PAGE)) {
             $data['msg'] = "";
             
 
@@ -110,7 +111,7 @@ class user extends CI_Controller
 //		die();
 
 
-		if ($this->mloging->get_permission(SYS_USER_EDIT)) {
+		if ($this->mlogin->get_permission(SYS_USER_EDIT)) {
             $edit_user_id = base64_decode($this->input->get_post('user_id'));
             $data['msg'] = "";
 
@@ -154,7 +155,7 @@ class user extends CI_Controller
 		$this->load->view('top_header',$object);
 		$this->load->view('side_menu');
 
-        if ($this->mloging->get_permission(SYS_USER_GROUP)) {
+        if ($this->mlogin->get_permission(SYS_USER_GROUP)) {
 
             if ($this->input->get_post('msge') != null) {
                 $group_data['message'] = "User Group successfully Added";
@@ -179,7 +180,7 @@ class user extends CI_Controller
 		$this->load->view('top_header',$object);
 		$this->load->view('side_menu');
 
-        if ($this->mloging->get_permission(SYS_USER_GROUP_SET_PERMISSION)) {
+        if ($this->mlogin->get_permission(SYS_USER_GROUP_SET_PERMISSION)) {
             $edit_usergroup_id = base64_decode($this->input->get_post('group_id'));
 
             if ($this->input->get_post('msg') != null) {
@@ -203,7 +204,7 @@ class user extends CI_Controller
 
     public function save_user_group()
     {
-        if ($this->mloging->get_permission(SYS_USER_GROUP_SET_PERMISSION_SAVE)) {
+        if ($this->mlogin->get_permission(SYS_USER_GROUP_SET_PERMISSION_SAVE)) {
             $group_id = $_GET['edit'];
             $group_name = $_POST['user_group_name'];
             //$prev_group_name = $_POST['prev_group_name'];
@@ -256,7 +257,7 @@ class user extends CI_Controller
         $object['active_tab'] = "user_group";
         $this->load->view('top_menu',$object);
 
-        if ($this->mloging->get_permission(SYS_USER_GROUP_ADD)) {
+        if ($this->mlogin->get_permission(SYS_USER_GROUP_ADD)) {
             if ($this->input->post() != null && sizeof($this->input->post()) > 0) {
                 $post_data = $this->input->post();
                 $post_data['sys_user_group_id'] = 0;
@@ -292,7 +293,7 @@ class user extends CI_Controller
     public function check_add_user_permission(){
         // $module = $this->input->get_post('module');
 
-        if ($this->mloging->get_permission( SYS_USER_GROUP_ADD)) {
+        if ($this->mlogin->get_permission( SYS_USER_GROUP_ADD)) {
             echo true;
         }
         else {
