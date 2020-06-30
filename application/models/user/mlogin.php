@@ -16,7 +16,7 @@ class MLogin extends CI_Model
 
         $this->db->select('*');
         $this->db->where('username', $username);
-        $this->db->where('status_id', '1');
+        $this->db->where('is_active', '1');
         $this->db->from('sysadmin');
         $query = $this->db->get();
 

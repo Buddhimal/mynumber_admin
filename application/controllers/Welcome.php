@@ -16,12 +16,8 @@ class Welcome extends CI_Controller
 
 	public function index()
 	{
-
-
-
 		$this->load->view('header');
 		$this->load->view('login');
-//		$this->load->view('footer');
 	}
 
 	public function login()
@@ -40,11 +36,6 @@ class Welcome extends CI_Controller
 		} else{
 			echo '{ "retval": false,"url" : "' . base_url() . '" }';
 		}
-//		if ($this->mlogin->login($username, $password)) {
-//			echo '{ "retval": true,"url" : "' . base_url() . 'dashboard' . '" }';
-//		} else {
-//			echo '{ "retval": false,"url" : "' . base_url() . '" }';
-//		}
 	}
 
 	public function logout() {
