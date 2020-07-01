@@ -49,7 +49,7 @@
                                 <p>New Users</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-user-alt"></i>
+                                <i class="fas fa-user-alt   "></i>
                             </div>
                             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

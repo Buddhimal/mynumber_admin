@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['add_client'] = "dashboard/add_new_client";
+$route['clinics'] = "admin/clinic_list";
 $route['client_list'] = "dashboard/client_list";
 $route['client_profile'] = "dashboard/client_profile";
 $route['edit_client'] = "dashboard/edit_client";

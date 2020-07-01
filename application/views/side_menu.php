@@ -32,6 +32,25 @@ if(!isset($active_main_tab))
 					</a>
 				</li>
 
+                <li class="nav-item has-treeview <?php if($active_main_tab=='Clinics') echo "menu-open" ?> ">
+                    <a href="#" class="nav-link <?php if($active_main_tab=='Clinics') echo "active" ?>">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                            Clinics
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ">
+                        <li class="nav-item">
+                            <a href="<?php echo base_url()?>clinics" class="nav-link <?php if($active_tab=='clinic_list') echo "active" ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Clinic List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
 
 				<li class="nav-item has-treeview <?php if($active_main_tab=='Administration') echo "menu-open" ?> ">
 					<a href="#" class="nav-link <?php if($active_main_tab=='Administration') echo "active" ?>">
