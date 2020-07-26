@@ -32,6 +32,9 @@
 
     <link rel="stylesheet" href="<?php echo base_url()?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
+	<!-- SweetAlert2 -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
 	<!-- Bootstrap 4 -->
 
 </head>

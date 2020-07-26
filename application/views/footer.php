@@ -50,6 +50,9 @@
 <script src="<?php echo base_url() ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 
+<!-- SweetAlert2 -->
+<script src="<?php echo base_url() ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+
 
 
 

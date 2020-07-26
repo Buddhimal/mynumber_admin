@@ -151,9 +151,22 @@ class Mclinic extends CI_Model
     public function get_all()
     {
         $this->db
-            ->select('*')
+            ->select('c.clinic_name,
+					c.email,
+					c.device_mobile,
+					c.web,
+					l.city,
+					l.street_address,
+					l.address_line_ii,
+					l.district,
+					l.province,
+					l.long,
+					l.lat,
+					c.is_active,
+					c.is_verified,
+					c.id as clinic_id')
             ->from($this->table . ' as c')
-            ->join('locations', 'locations.id=c.location_id');
+            ->join('locations as l', 'l.id=c.location_id');
 
         return $this->db->get();
     }
@@ -235,4 +248,16 @@ class Mclinic extends CI_Model
             return FALSE;
         }
     }
+
+
+    public function verify_clinic($clinic_id){
+		$this->db
+			->set('is_verified', 1)
+			->set('verified_at', date("Y-m-d H:i:s"))
+			->set('updated', date("Y-m-d H:i:s"))
+			->set('updated_by', 'buddhimal')
+			->where('id', $clinic_id)
+			->update($this->table);
+		return true;
+	}
 }

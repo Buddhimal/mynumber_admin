@@ -1,3 +1,10 @@
+<style>
+	#map {
+		height: 600px;
+		width: 100%;
+	}
+</style>
+
 <div class="wrapper">
 
     <!-- Content Wrapper. Contains page content -->
@@ -44,8 +51,10 @@
                                         <th>District</th>
                                         <th>Province</th>
                                         <th>Location</th>
-                                        <th>Active Status</th>
-                                        <th>Verify Status</th>
+                                        <th>Active</th>
+                                        <th>Verified</th>
+                                        <th>Action</th>
+                                        <th>Action2</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -62,9 +71,12 @@
                                             <td><button type="button" class="btn btn-primary show-map" data-toggle="modal" data-target="#modal-xl" data-long="<?php echo $clinic->long ?>" data-lat="<?php echo $clinic->lat ?>">
 													<span class="oi oi-map-marker"></span>View
 												</button></td>
-											<td><?php if($clinic->is_active==1) echo "<span class=\"badge bg-success float-right\">Active</span>"; else echo "<span class=\"badge bg-danger float-right\">Inactive</span>"?></td>
-                                            <td><?php if($clinic->is_verified==1) echo "<span class=\"badge bg-success float-right\">Verified</span>"; else echo "<span class=\"badge bg-danger float-right\">Unverified</span>"?></td>
-
+											<td><?php if($clinic->is_active==1) echo "<span class=\"badge bg-success\">Active</span>"; else echo "<span class=\"badge bg-danger \">Inactive</span>"?></td>
+                                            <td><?php if($clinic->is_verified==1) echo "<span class=\"badge bg-success \">Verified</span>"; else echo "<span class=\"badge bg-danger\">Unverified</span>"?></td>
+											<td> <span class="btn btn-sm btn-success verify" data-clinic-id="<?php echo $clinic->clinic_id ?>">
+													<i class="fas fa-check"></i>
+												</span></td>
+											<td> <a href="<?php echo base_url()?>clinic/profile?clinic_id=<?php echo $clinic->clinic_id ?>" <i class="fas fa-eye" style="color: cornflowerblue"></i> </td>
                                         </tr>
                                     <?php } ?>
 
@@ -106,6 +118,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 
+	<script async defer	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA0x8kVtO2UiwWqjPOltNeh5bfPjfmdfQ&callback=initMap">	</script>
     <script>
         $(function () {
             $("#tbl_clinic_list").DataTable({
@@ -113,23 +126,54 @@
                 "autoWidth": false,
             });
         });
-    </script>
 
-	<style>
-		/* Set the size of the div element that contains the map */
-		#map {
-			height: 600px;  /* The height is 400 pixels */
-			width: 100%;  /* The width is the width of the web page */
-		}
-	</style>
-
-	<script>
 
 		$('.show-map').on('click', function () {
 			var lat = $(this).data('lat');
 			var long = $(this).data('long');
 
 			initMap(lat,long)
+
+		})
+
+
+		$('.verify').on('click', function () {
+			var clinic_id = $(this).data('clinic-id');
+			Swal.fire({
+				title: 'Do you want to verify this Clinic?',
+				// input: 'text',
+				// inputAttributes: {
+				// 	autocapitalize: 'off'
+				// },
+				showCancelButton: true,
+				confirmButtonText: 'Yes',
+				showLoaderOnConfirm: true,
+				preConfirm: (login) => {
+
+					return $.ajax({
+						type: "GET",
+						url: "<?php echo base_url() ?>clinic/verify?clinic_id=",
+						data:{
+							clinic_id: clinic_id
+						},
+
+						success: function(data)
+						{
+							return data;
+						}
+					});
+				},
+				allowOutsideClick: () => !Swal.isLoading()
+			}).then((result) => {
+				if (result.value) {
+					Swal.fire({
+						title: `Clinic Verified Successfully!`
+					})
+					location.reload();
+				}
+			})
+
+			// location.reload();
 
 		})
 
@@ -144,9 +188,10 @@
 			// The marker, positioned at Uluru
 			var marker = new google.maps.Marker({position: uluru, map: map});
 		}
+
+
+
 	</script>
-	<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA0x8kVtO2UiwWqjPOltNeh5bfPjfmdfQ&callback=initMap">
-	</script>
+
 
 
