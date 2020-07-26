@@ -38,15 +38,13 @@
                                         <th>Clinic Name</th>
                                         <th>Email</th>
                                         <th>Device mobile</th>
-                                        <th>Contact mobile</th>
-                                        <th>Web</th>
+                                        <th>Website</th>
                                         <th>City</th>
                                         <th>Address</th>
                                         <th>District</th>
                                         <th>Province</th>
                                         <th>Location</th>
                                         <th>Active Status</th>
-                                        <th>Delete Status</th>
                                         <th>Verify Status</th>
                                     </tr>
                                     </thead>
@@ -56,16 +54,16 @@
                                             <td><?php echo $clinic->clinic_name ?></td>
                                             <td><?php echo $clinic->email ?></td>
                                             <td><?php echo $clinic->device_mobile ?></td>
-                                            <td><?php echo $clinic->contact_mobile ?></td>
                                             <td><?php echo $clinic->web ?></td>
                                             <td><?php echo $clinic->city ?></td>
                                             <td><?php echo $clinic->street_address . ' ' . $clinic->address_line_ii ?></td>
                                             <td><?php echo $clinic->district ?></td>
                                             <td><?php echo $clinic->province ?></td>
-                                            <td><?php echo '' ?></td>
-                                            <td><?php echo '' ?></td>
-                                            <td><?php echo '' ?></td>
-                                            <td><?php echo '' ?></td>
+                                            <td><button type="button" class="btn btn-primary show-map" data-toggle="modal" data-target="#modal-xl" data-long="<?php echo $clinic->long ?>" data-lat="<?php echo $clinic->lat ?>">
+													<span class="oi oi-map-marker"></span>View
+												</button></td>
+											<td><?php if($clinic->is_active==1) echo "<span class=\"badge bg-success float-right\">Active</span>"; else echo "<span class=\"badge bg-danger float-right\">Inactive</span>"?></td>
+                                            <td><?php if($clinic->is_verified==1) echo "<span class=\"badge bg-success float-right\">Verified</span>"; else echo "<span class=\"badge bg-danger float-right\">Unverified</span>"?></td>
 
                                         </tr>
                                     <?php } ?>
@@ -86,6 +84,28 @@
     </div>
     <!-- /.content-wrapper -->
 
+
+	<div class="modal fade" id="modal-xl">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Clinic Location</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="map"></div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
     <script>
         $(function () {
             $("#tbl_clinic_list").DataTable({
@@ -95,5 +115,38 @@
         });
     </script>
 
+	<style>
+		/* Set the size of the div element that contains the map */
+		#map {
+			height: 600px;  /* The height is 400 pixels */
+			width: 100%;  /* The width is the width of the web page */
+		}
+	</style>
+
+	<script>
+
+		$('.show-map').on('click', function () {
+			var lat = $(this).data('lat');
+			var long = $(this).data('long');
+
+			initMap(lat,long)
+
+		})
+
+
+		// Initialize and add the map
+		function initMap(lat,long) {
+			// The location of Uluru
+			var uluru = {lng: long, lat: lat};
+			// The map, centered at Uluru
+			var map = new google.maps.Map(
+					document.getElementById('map'), {zoom: 10, center: uluru});
+			// The marker, positioned at Uluru
+			var marker = new google.maps.Marker({position: uluru, map: map});
+		}
+	</script>
+	<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA0x8kVtO2UiwWqjPOltNeh5bfPjfmdfQ&callback=initMap">
+	</script>
 
 

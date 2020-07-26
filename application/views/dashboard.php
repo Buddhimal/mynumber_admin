@@ -35,7 +35,7 @@
                             <div class="icon">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url() ?>clinics" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -46,7 +46,7 @@
 <!--                                <h3>53<sup style="font-size: 20px">%</sup></h3>-->
                                 <h3>53</h3>
 
-                                <p>New Users</p>
+                                <p>New Consultants</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-alt   "></i>
