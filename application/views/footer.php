@@ -1,5 +1,5 @@
 <footer class="main-footer text-sm">
-    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Softgen Technologies Pvt Ltd</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Softgen International Pvt Ltd</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0.0
