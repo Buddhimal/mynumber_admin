@@ -66,4 +66,27 @@ class Admin extends CI_Controller
 		$this->load->view('footer');
 	}
 
+	public function update_consultant_image(){
+		$this->load->view('header');
+		$object['controller'] = $this;
+		$object['active_main_tab'] = "update_image";
+		$object['active_tab'] = "consultant_image";
+		$this->load->view('top_header', $object);
+		$this->load->view('side_menu');
+
+		$this->load->view('image_upload/consultant');
+		$this->load->view('footer');
+	}
+	public function update_patient_image(){
+		$this->load->view('header');
+		$object['controller'] = $this;
+		$object['active_main_tab'] = "update_image";
+		$object['active_tab'] = "patient_image";
+		$this->load->view('top_header', $object);
+		$this->load->view('side_menu');
+
+		$this->load->view('image_upload/patient');
+		$this->load->view('footer');
+	}
+
 }
