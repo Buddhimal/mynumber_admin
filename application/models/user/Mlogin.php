@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class MLogin extends CI_Model
+class Mlogin extends CI_Model
 {
     function __construct()
     {

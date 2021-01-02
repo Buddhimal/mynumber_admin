@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * Date: 9/25/2019
  * Time: 10:20 PM
  */
-class MModel extends CI_Model
+class Mmodel extends CI_Model
 {
     public function __construct()
     {
