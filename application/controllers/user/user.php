@@ -8,7 +8,7 @@ class user extends CI_Controller
         parent::__construct();
         $this->load->model('user/muser');
         $this->load->model('user/mlogin');
-//        $this->load->model('mloging');
+        // $this->load->model('mloging');
 
 		if (is_login() == '') {
 			$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
