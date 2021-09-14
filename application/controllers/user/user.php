@@ -252,10 +252,10 @@ class user extends CI_Controller
     public function add_new_group()
     {
         $this->load->view('header');
-        $this->load->view('top_header');
         $object['controller'] = $this;
         $object['active_tab'] = "user_group";
-        $this->load->view('top_menu',$object);
+        $this->load->view('top_header');
+//        $this->load->view('top_menu',$object);
 
         if ($this->mlogin->get_permission(SYS_USER_GROUP_ADD)) {
             if ($this->input->post() != null && sizeof($this->input->post()) > 0) {
