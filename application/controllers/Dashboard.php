@@ -25,11 +25,6 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_tab'] = "Dashboard";
-		$this->load->view('top_header',$object);
-//		$this->load->view('side_menu');
-
 		$this->load->view('dashboard');
 		$this->load->view('footer');
 	}

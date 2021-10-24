@@ -27,14 +27,7 @@ class Admin extends CI_Controller
 	public function clinic_list()
 	{
 		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_main_tab'] = "Clinics";
-		$object['active_tab'] = "clinic_list";
-		$this->load->view('top_header', $object);
-		$this->load->view('side_menu');
-
 		$data['clinic_list'] = $this->mclinic->get_all();
-
 		$this->load->view('clinic/clinic_list', $data);
 		$this->load->view('footer');
 	}
@@ -43,14 +36,7 @@ class Admin extends CI_Controller
 	public function manager_list()
 	{
 		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_main_tab'] = "Managers";
-		$object['active_tab'] = "manager_list";
-		$this->load->view('top_header', $object);
-		$this->load->view('side_menu');
-
 		$data['clinic_list'] = $this->mclinic->get_all();
-
 		$this->load->view('clinic/clinic_list', $data);
 		$this->load->view('footer');
 	}
@@ -59,7 +45,6 @@ class Admin extends CI_Controller
 	{
 
 		$clinic_id = $this->input->get_post('clinic_id');
-
 		if ($this->mclinic->verify_clinic($clinic_id))
 			echo json_encode("success " . $clinic_id);
 	}
@@ -69,38 +54,22 @@ class Admin extends CI_Controller
 		$clinic_id = $this->input->get('clinic_id');
 
 		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_main_tab'] = "Clinics";
-		$object['active_tab'] = "clinic_list";
-		$this->load->view('top_header', $object);
-		$this->load->view('side_menu');
-
 		$data['clinic'] = $this->mclinic->get($clinic_id);
 		$data['location'] = $this->mlocations->get($data['clinic']->location_id);
-
-		$this->load->view('clinic/clinic_profile',$data);
+		$this->load->view('clinic/clinic_profile', $data);
 		$this->load->view('footer');
 	}
 
-	public function update_consultant_image(){
+	public function update_consultant_image()
+	{
 		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_main_tab'] = "update_image";
-		$object['active_tab'] = "consultant_image";
-		$this->load->view('top_header', $object);
-		$this->load->view('side_menu');
-
 		$this->load->view('image_upload/consultant');
 		$this->load->view('footer');
 	}
-	public function update_patient_image(){
-		$this->load->view('header');
-		$object['controller'] = $this;
-		$object['active_main_tab'] = "update_image";
-		$object['active_tab'] = "patient_image";
-		$this->load->view('top_header', $object);
-		$this->load->view('side_menu');
 
+	public function update_patient_image()
+	{
+		$this->load->view('header');
 		$this->load->view('image_upload/patient');
 		$this->load->view('footer');
 	}
