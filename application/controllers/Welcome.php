@@ -20,7 +20,7 @@ class Welcome extends CI_Controller
 		$this->load->view('login');
 	}
 
-	public function login()
+	public function check_login()
 	{
 		$username = $this->input->get_post('username');
 		$password = $this->input->get_post('password');
@@ -31,7 +31,7 @@ class Welcome extends CI_Controller
 			if($last_url !=''){
 				echo '{ "retval": true,"url" : "' . $last_url . '" }';
 			} else{
-				echo '{ "retval": true,"url" : "' . base_url() . 'dashboard' . '" }';
+				echo '{ "retval": true,"url" : "' . base_url() . '' . '" }';
 			}
 		} else{
 			echo '{ "retval": false,"url" : "' . base_url() . '" }';
@@ -45,7 +45,7 @@ class Welcome extends CI_Controller
 		$this->session->unset_userdata('name');
 		$this->session->unset_userdata('username');
 		$this->session->sess_destroy();
-		redirect(base_url());
+		redirect(base_url('login'));
 	}
 
 	public function change_password() {

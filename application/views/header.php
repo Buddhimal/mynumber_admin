@@ -156,7 +156,7 @@
 
 					<li class="menu-title">Navigation</li>
 					<li>
-						<a href="<?php echo base_url() ?>dashboard">
+						<a href="<?php echo base_url() ?>">
 							<i class="fe-activity"></i>
 							<span> Dashboards</span></a>
 					</li>

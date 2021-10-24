@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller
 			$login_info = array(
 				'last_url'  => $actual_link);
 			$this->session->set_userdata($login_info);
-			redirect(base_url());
+			redirect(base_url('login'));
 		}
 	}
 
