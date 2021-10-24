@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="col-md-6">
 				<script>
 					document.write(new Date().getFullYear())
-				</script> &copy; Evermed System
+				</script> &copy; Softgen International
 			</div>
 
 		</div>

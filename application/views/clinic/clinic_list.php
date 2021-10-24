@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="page-title-box">
-<!--						--><?php //$this->load->view('template/breadcrumb') ?>
+						<!--						--><?php //$this->load->view('template/breadcrumb') ?>
 						<h4 class="page-title">Registered Clinic list</h4>
 					</div>
 				</div>
@@ -30,7 +30,8 @@
 							<div class="card">
 								<!-- /.card-header -->
 								<div class="card-body">
-									<table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+									<table id="datatable-buttons"
+										   class="table table-striped dt-responsive nowrap w-100">
 										<thead>
 										<tr>
 											<th>Clinic Name</th>
@@ -60,11 +61,10 @@
 												<td><?php echo $clinic->district ?></td>
 												<td><?php echo $clinic->province ?></td>
 												<td>
-													<button type="button" class="btn btn-primary show-map"
+													<button type="button" class="btn btn-primary"
 															data-toggle="modal" data-target="#modal-xl"
-															data-long="<?php echo $clinic->long ?>"
-															data-lat="<?php echo $clinic->lat ?>">
-														<span class="oi oi-map-marker"></span>View
+															onclick='showMap(<?php echo $clinic->lat ?>,<?php echo $clinic->long ?>)'>
+														<i class="fe-map-pin"></i> View
 													</button>
 												</td>
 
@@ -75,8 +75,9 @@
 													<i class="fas fa-check"></i>
 												</span></td>
 												<td>
-													<a href="<?php echo base_url() ?>clinic/profile?clinic_id=<?php echo $clinic->clinic_id ?>"
-													<i class="fas fa-eye" style="color: cornflowerblue"></i></td>
+													<a href="<?php echo base_url() ?>clinic/profile?clinic_id=<?php echo $clinic->clinic_id ?>"></a>
+													<i class="fas fa-eye" style="color: cornflowerblue"></i>
+												</td>
 											</tr>
 										<?php } ?>
 
@@ -121,33 +122,19 @@
 </div>
 
 <script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA0x8kVtO2UiwWqjPOltNeh5bfPjfmdfQ&callback=initMap"></script>
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA0x8kVtO2UiwWqjPOltNeh5bfPjfmdfQ"></script>
 <script>
-	$(function () {
-		$("#tbl_clinic_list").DataTable({
-			"responsive": true,
-			"autoWidth": false,
-		});
-	});
 
 
-	$('.show-map').on('click', function () {
-		var lat = $(this).data('lat');
-		var long = $(this).data('long');
-
+	function showMap(lat, long) {
 		initMap(lat, long)
-
-	})
+	}
 
 
 	$('.verify').on('click', function () {
 		var clinic_id = $(this).data('clinic-id');
 		Swal.fire({
 			title: 'Do you want to verify this Clinic?',
-			// input: 'text',
-			// inputAttributes: {
-			// 	autocapitalize: 'off'
-			// },
 			showCancelButton: true,
 			confirmButtonText: 'Yes',
 			showLoaderOnConfirm: true,
