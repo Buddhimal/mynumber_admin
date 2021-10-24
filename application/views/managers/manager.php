@@ -20,7 +20,7 @@
 					<div class="card">
 						<div class="card-body">
 							<form role="form" class="parsley-examples" action="<?php echo base_url() ?>manager/save"
-								  method="post">
+								  method="post" enctype="multipart/form-data">
 								<h4 class="header-title m-t-0">Manager Details</h4>
 								<?php $this->load->view('template/alert_message') ?>
 								<div class="card-box">
@@ -114,21 +114,21 @@
 										<div class="row">
 											<div class="col-lg-4">
 												<div class="mt-3">
-													<input type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
+													<input name="nic_front" type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
 													<p class="text-muted text-center mt-2 mb-0">NIC Front Side</p>
 												</div>
 											</div>
 
 											<div class="col-lg-4">
 												<div class="mt-3">
-													<input type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
+													<input name="nic_back" type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
 													<p class="text-muted text-center mt-2 mb-0">NIC Back Side</p>
 												</div>
 											</div>
 
 											<div class="col-lg-4">
 												<div class="mt-3">
-													<input type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
+													<input name="agreement" type="file" data-plugins="dropify" required data-allowed-file-extensions='["pdf", "jpg", "png", "jpeg"]'/>
 													<p class="text-muted text-center mt-2 mb-0">Agreement</p>
 												</div>
 											</div>

@@ -22,6 +22,38 @@ class Mmodel extends CI_Model
         return $this->db->query($query);
     }
 
+	public function insert($table, $data)
+	{
+		$this->db->insert($table, $data);
+		return $this->db->insert_id();
+	}
+
+	public function select_all($table)
+	{
+		$res = $this->db->select('*')->from($table)->get();
+		return $res;
+	}
+
+	public function select_where($table, $where)
+	{
+		$res = $this->db->select('*')->from($table)->where($where)->get();
+		return $res;
+	}
+
+	public function delete_where($table, $column, $value)
+	{
+		$this->db->where($column, $value);
+		$this->db->delete($table);
+	}
+
+	public function update_where($table, $data, $where)
+	{
+		$this->db->where($where);
+		$this->db->update($table, $data);
+
+		return true;
+	}
+
     public function getGUID()
     {
         if (function_exists('com_create_guid')) {

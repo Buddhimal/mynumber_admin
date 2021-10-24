@@ -64,4 +64,5 @@ $route['image/patient'] = "admin/update_patient_image";
 
 
 $route['manager/new'] = "admin/new_manager";
+$route['manager/save'] = "admin/save_manager";
 
