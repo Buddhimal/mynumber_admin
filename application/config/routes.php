@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['clinics'] = "admin/clinic_list";
+$route['managers'] = "admin/manager_list";
 $route['clinic/verify'] = "admin/verify_clinic";
 $route['clinic/profile'] = "admin/clinic_profile";
 $route['image/consultant'] = "admin/update_consultant_image";

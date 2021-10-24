@@ -1,60 +1,95 @@
-<footer class="main-footer text-sm">
-    <strong>Copyright &copy; 2020 <a href="https://softgeninternational.com/" target="_blank">Softgen International Pvt Ltd</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
-    </div>
-</footer>
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+?>
 
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-
-
-<!-- /.control-sidebar -->
+<div class="modal fade" id="loading_modal" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<div class="spinner-grow avatar-lg text-secondary m-2" role="status"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<span style="text-align: center">Loading...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="<?php echo base_url() ?>plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="<?php echo base_url()?>plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="<?php echo base_url()?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url()?>dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url()?>dist/js/demo.js"></script>
+<!-- Footer Start -->
+<footer class="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<script>
+					document.write(new Date().getFullYear())
+				</script> &copy; Evermed System
+			</div>
 
-<script src="<?php echo base_url() ?>plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="<?php echo base_url() ?>plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?php echo base_url() ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php echo base_url() ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?php echo base_url() ?>plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="<?php echo base_url() ?>plugins/moment/moment.min.js"></script>
-<script src="<?php echo base_url() ?>plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo base_url() ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="<?php echo base_url() ?>plugins/summernote/summernote-bs4.min.js"></script>
-<!-- AdminLTE App -->
-<!--<script src="--><?php //echo base_url() ?><!--dist/js/adminlte.js"></script>-->
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!--<script src="--><?php //echo base_url() ?><!--dist/js/pages/dashboard.js"></script>-->
+		</div>
+	</div>
+</footer>
+<!-- end Footer -->
 
-<script src="<?php echo base_url() ?>plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url() ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?php echo base_url() ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+</div>
 
-<!-- SweetAlert2 -->
-<script src="<?php echo base_url() ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 
 
+</div>
+<!-- END wrapper -->
 
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<!-- Vendor js -->
+<script src="<?php echo base_url()?>assets/js/vendor.min.js"></script>
+<!-- Plugin js-->
+<script src="<?php echo base_url()?>assets/libs/parsleyjs/parsley.min.js"></script>
+
+<!-- Validation init js-->
+<script src="<?php echo base_url()?>assets/js/pages/form-validation.init.js"></script>
+
+<!-- Plugins js-->
+<script src="<?php echo base_url(); ?>assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+
+<!-- App js-->
+<script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
+
+<!-- Sweet Alerts js -->
+<!--<script src="--><?php //echo base_url(); ?><!--assets/libs/sweetalert2/sweetalert2.min.js"></script>-->
+
+
+<!-- third party js -->
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<!--<script src="--><?php //echo base_url(); ?><!--assets/libs/footable/footable.all.min.js"></script>-->
+<!--<script src="--><?php //echo base_url(); ?><!--assets/js/pages/foo-tables.init.js"></script>-->
+<script src="<?php echo base_url(); ?>assets/js/pages/datatables.init.js"></script>
+<!-- third party js ends -->
+
+<script src="<?php echo base_url(); ?>assets/libs/multiselect/js/jquery.multi-select.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/select2/js/select2.min.js"></script>
+
+<!-- Init js-->
+<script src="<?php echo base_url(); ?>assets/js/pages/form-advanced.init.js"></script>
 
 </body>
+
 </html>

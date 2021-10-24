@@ -39,6 +39,22 @@ class Admin extends CI_Controller
 		$this->load->view('footer');
 	}
 
+
+	public function manager_list()
+	{
+		$this->load->view('header');
+		$object['controller'] = $this;
+		$object['active_main_tab'] = "Managers";
+		$object['active_tab'] = "manager_list";
+		$this->load->view('top_header', $object);
+		$this->load->view('side_menu');
+
+		$data['clinic_list'] = $this->mclinic->get_all();
+
+		$this->load->view('clinic/clinic_list', $data);
+		$this->load->view('footer');
+	}
+
 	public function verify_clinic()
 	{
 
