@@ -15,6 +15,7 @@
 	<!-- plugin css -->
 	<link href="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css"
 		  rel="stylesheet" type="text/css"/>
+	<link href="<?php echo base_url(); ?>assets/libs/dropify/css/dropify.min.css" rel="stylesheet" type="text/css" />
 
 	<!-- App css -->
 	<link href="<?php echo base_url(); ?>assets/css/bootstrap-material.min.css" rel="stylesheet" type="text/css"

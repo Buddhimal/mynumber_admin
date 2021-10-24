@@ -57,6 +57,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <script src="<?php echo base_url(); ?>assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/dropify/js/dropify.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/libs/dropzone/min/dropzone.min.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/pages/form-fileuploads.init.js"></script>
+
 
 <!-- App js-->
 <script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>

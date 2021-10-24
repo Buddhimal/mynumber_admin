@@ -37,7 +37,15 @@ class Admin extends CI_Controller
 	{
 		$this->load->view('header');
 		$data['clinic_list'] = $this->mclinic->get_all();
-		$this->load->view('clinic/clinic_list', $data);
+		$this->load->view('managers/manager_list', $data);
+		$this->load->view('footer');
+	}
+
+	public function new_manager()
+	{
+		$this->load->view('header');
+		$data['clinic_list'] = $this->mclinic->get_all();
+		$this->load->view('managers/manager', $data);
 		$this->load->view('footer');
 	}
 

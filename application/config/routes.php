@@ -62,3 +62,6 @@ $route['clinic/profile'] = "admin/clinic_profile";
 $route['image/consultant'] = "admin/update_consultant_image";
 $route['image/patient'] = "admin/update_patient_image";
 
+
+$route['manager/new'] = "admin/new_manager";
+
