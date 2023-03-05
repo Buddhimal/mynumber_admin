@@ -74,7 +74,7 @@ CREATE TABLE `sys_module`  (
 -- Records of sys_module
 -- ----------------------------
 INSERT INTO `sys_module` VALUES (50, 'Manage User Permissions', 'USR_MANAGER', 1, 0);
-INSERT INTO `sys_module` VALUES (51, 'User List Viwe', 'SYS_USER_LIST_VIWE', 1, 50);
+INSERT INTO `sys_module` VALUES (51, 'User List Viwe', 'SYS_USER_LIST_VIEW', 1, 50);
 INSERT INTO `sys_module` VALUES (52, 'Add New User', 'SYS_USER_ADD_NEW_PAGE', 1, 50);
 INSERT INTO `sys_module` VALUES (53, 'Edit User', 'SYS_USER_EDIT', 1, 50);
 INSERT INTO `sys_module` VALUES (54, 'User Group', 'SYS_USER_GROUP', 1, 50);

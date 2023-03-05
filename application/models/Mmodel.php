@@ -12,6 +12,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 class Mmodel extends CI_Model
 {
+	public $the_error;
+
     public function __construct()
     {
         parent::__construct();
@@ -24,8 +26,10 @@ class Mmodel extends CI_Model
 
 	public function insert($table, $data)
 	{
-		$this->db->insert($table, $data);
-		return $this->db->insert_id();
+		$result = $this->db->insert($table, $data);
+
+		$this->the_error = $this->db->error();
+		return $result;
 	}
 
 	public function select_all($table)
@@ -71,6 +75,10 @@ class Mmodel extends CI_Model
                 . chr(125);// "}"
             return $uuid;
         }
+    }
+
+    public function getEmptyGUID(){
+    	return "00000000-0000-0000-0000-00000000";
     }
 
 }

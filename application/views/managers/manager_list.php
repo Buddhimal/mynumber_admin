@@ -24,7 +24,7 @@
 								</div>
 								<div class="col-sm-8">
 									<div class="text-sm-right">
-										<a href="<?php echo base_url()?>manager/new"  class="btn btn-primary waves-effect waves-light mb-2">Add Manager</a>
+										<a href="<?php echo base_url(); ?>/manager/new"  class="btn btn-primary waves-effect waves-light mb-2">Add Manager</a>
 									</div>
 								</div><!-- end col-->
 							</div>
@@ -35,34 +35,31 @@
 								<thead>
 								<tr>
 									<th>Name</th>
-									<th>Registration No</th>
-									<th>Speciality</th>
 									<th>Email</th>
-									<th>Address</th>
 									<th>Phone</th>
-									<th>Comments</th>
+									<th>Address</th>
+									<th>NIC</th>
+									<th>Email Verified</th>
 									<th>Action</th>
 								</tr>
 								</thead>
 
 
 								<tbody>
-<!--								--><?php //foreach ($doctors->result() as $doctor) { ?>
-									<!--<tr>
-									<td><?php echo $doctor->first_name.' '.$doctor->last_name ?></td>
-									<td><?php echo $doctor->registration_no?></td>
-									<td><?php echo $doctor->speciality?></td>
-									<td><?php echo $doctor->email?></td>
-									<td><?php echo $doctor->address?></td>
-									<td><?php echo $doctor->phone?></td>
-									<td><?php echo $doctor->other_comment?></td>
-									<td>
-																				<button onclick="load_patient(<?php //echo $doctor->id?>)"
-												class="btn btn-xs btn-light"><i class="mdi mdi-pencil"></i></button>
-									</td>
-								</tr>-->
-<!--								--><?php //} ?>
-
+									<?php  foreach($managers->result() as $manager) :?>
+										<tr>
+											<td><?php echo sprintf("%s %s",$manager->first_name, $manager->last_name); ?></td>
+											<td><?php echo $manager->email; ?></td>
+											<td><?php echo $manager->phone ?></td>
+											<td><?php echo $manager->address ?></td>
+											<td><?php echo $manager->nic; ?></td>
+											<td><?php echo $manager->has_email_verified ? "Yes" : "No"; ?></td>
+											<td align="right">
+												<a class="btn btn-sm btn-warning" href="<?php echo trim(base_url(), '/'); ?>/manager/update/<?php echo $manager->id; ?>">Edit</a>
+												<a class="btn btn-sm btn-danger" href="<?php echo trim(base_url(), '/'); ?>/manager/delete/<?php echo $manager->id; ?>">Delete</a>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 

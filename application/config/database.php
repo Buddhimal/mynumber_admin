@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '18.142.128.3',
+	'hostname' => 'localhost', //'18.142.128.3',
 	'port' => '',
 	'username' => 'root',
-	'password' => 'Aeris#+-098',
-	'database' => 'alldata_mynumber',
+	'password' => '', // 'Aeris#+-098',
+	'database' => 'sirikath_mynumber',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

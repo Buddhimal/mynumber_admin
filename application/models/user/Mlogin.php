@@ -30,17 +30,17 @@ class Mlogin extends CI_Model
                     'user_group_id' => $row->user_group_id,
                     'username' => $row->username,
                     'name' => $row->name,
-//                                           'epf_number'=>$row->epf_number,
+                    // 'epf_number'=>$row->epf_number,
                     'email' => $row->email,
                     'login' => TRUE);
                 $this->session->set_userdata($login_info);
                 $this->get_user_group_info();
-//					   $data = array(
-//						   'timestamp' => date("m/d/Y g:i:s A") ,
-//						   'user_id' => $row->user_id ,
-//						   'ip' => $this->input->ip_address()
-//						);
-//						$this->db->insert('sys_user_login_history', $data);
+                //					   $data = array(
+                //						   'timestamp' => date("m/d/Y g:i:s A") ,
+                //						   'user_id' => $row->user_id ,
+                //						   'ip' => $this->input->ip_address()
+                //						);
+                //						$this->db->insert('sys_user_login_history', $data);
                 //$this->db->query('UPDATE product p JOIN client_inventory c ON c.product_id = p.product_id SET p.scm_status =1');
 
                 return true;

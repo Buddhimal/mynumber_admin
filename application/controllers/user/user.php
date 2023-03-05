@@ -30,7 +30,7 @@ class user extends CI_Controller
 		$this->load->view('side_menu');
 
 
-		if ($this->mlogin->get_permission(SYS_USER_LIST_VIWE)) {
+		if ($this->mlogin->get_permission(SYS_USER_LIST_VIEW)) {
 
             $data['user_list'] = $this->muser->get_sys_user_list();
             $data['msg'] = "";
@@ -107,16 +107,16 @@ class user extends CI_Controller
 		$this->load->view('top_header',$object);
 		$this->load->view('side_menu');
 
-//		var_dump($this->input->post());
-//		die();
+		// var_dump($this->input->post());
+		// die();
 
 
 		if ($this->mlogin->get_permission(SYS_USER_EDIT)) {
             $edit_user_id = base64_decode($this->input->get_post('user_id'));
             $data['msg'] = "";
 
-//			var_dump(sizeof($this->input->post()));
-//			die();
+			// var_dump(sizeof($this->input->post()));
+			// die();
 
             if ($this->input->post() != null && sizeof($this->input->post()) > 0) {
                 $post_data = $this->input->post();
@@ -255,7 +255,7 @@ class user extends CI_Controller
         $object['controller'] = $this;
         $object['active_tab'] = "user_group";
         $this->load->view('top_header');
-//        $this->load->view('top_menu',$object);
+       // $this->load->view('top_menu',$object);
 
         if ($this->mlogin->get_permission(SYS_USER_GROUP_ADD)) {
             if ($this->input->post() != null && sizeof($this->input->post()) > 0) {

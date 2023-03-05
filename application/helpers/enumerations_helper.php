@@ -73,6 +73,15 @@ class SerialNumberStatus{
 }
 
 
+class EmailType{
+
+    const clinic  = 1;
+    const patient = 2;
+    const reps = 3;
+    const promo = 9;
+}
+
+
 //class DateHelper
 //{
 //

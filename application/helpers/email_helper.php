@@ -6,17 +6,19 @@ class EmailSender{
     const mynumber_info = 'My Number';
 }
 
-class EmailType{
+class EmailConfigs {
 
-    const new_user_email = 1;
-    const promotion_email = 2;
+    public static function verification_url($params){
+
+        if ( ENVIRONMENT != 'development' ) {
+            return sprintf('https://sales.mynumber.me/verify/%s', $params);
+        } else {
+            return sprintf('https://sales.mynumber.lk/verify/%s', $params);
+        }
+    }
 }
 
-
-class EmailTemplate{
-
-    const clinic_register = 'c38d8e35-5161-4970-9ae2-d0f7c00bf9d2';
-    const clinic_password_reset = '5605cd8a-214e-4f83-aed8-8592f7533107';
-    const clinic_new_consultant = 'b25207ab-d835-459a-9e2f-af03340c02e9';
-
+class EmailTemplate {
+    const add_manager = '034370ef-60df-11ed-8a2f-a41f7281c512';
+    const clinic_register = '';
 }

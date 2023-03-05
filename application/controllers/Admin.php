@@ -12,7 +12,11 @@ class Admin extends CI_Controller
 		$this->load->model('mmodel');
 		$this->load->model('user/muser');
 		$this->load->model('mclinic');
+		$this->load->model('msalesrep', 'salesreps');
 		$this->load->model('mlocations');
+		$this->load->model('Mcommunicatoremailqueue', 'memail');
+		$this->load->model('mtokens', 'token');
+
 		$this->load->library('upload');
 
 		if (is_login() == '') {
@@ -52,7 +56,7 @@ class Admin extends CI_Controller
 	public function manager_list()
 	{
 		$this->load->view('header');
-		$data['clinic_list'] = $this->mclinic->get_all();
+		$data['managers'] = $this->salesreps->get_managers();
 		$this->load->view('managers/manager_list', $data);
 		$this->load->view('footer');
 	}
@@ -60,8 +64,7 @@ class Admin extends CI_Controller
 	public function new_manager()
 	{
 		$this->load->view('header');
-		$data['clinic_list'] = $this->mclinic->get_all();
-		$this->load->view('managers/manager', $data);
+		$this->load->view('managers/manager');
 		$this->load->view('footer');
 	}
 
@@ -105,8 +108,10 @@ class Admin extends CI_Controller
 		$file2_name = "";
 		$file3_name = "";
 
+		$now = date("Y-m-d H:i:s");
+
 		$imageExtention = pathinfo($_FILES["nic_front"]["name"], PATHINFO_EXTENSION);
-//		echo $imageExtention;
+		// echo $imageExtention;
 
 		$config['upload_path'] = realpath(APPPATH . '../uploads');;
 		$config['allowed_types'] = '*';
@@ -133,21 +138,71 @@ class Admin extends CI_Controller
 			$this->upload->do_upload('agreement');
 		}
 
-		$post_data["id"] = trim($this->mmodel->getGUID(), '{}');;
+		$post_data["id"] = trim($this->mmodel->getGUID(), '{}');
 		$post_data["nic_front"] = $file1_name;
 		$post_data["nic_back"] = $file2_name;
 		$post_data["agreement"] = $file3_name;
-		$post_data["updated"] = date("Y-m-d H:i:s");
-		$post_data["created"] = date("Y-m-d H:i:s");
+		$post_data["updated"] = $now ;
+		$post_data["created"] = $now ;
+		$post_data['manager'] = $this->mmodel->getEmptyGUID();
+		$post_data['is_manager'] = true;
 		$post_data["updated_by"] = $this->session->userdata('user_id');
 		$post_data["created_by"] = $this->session->userdata('user_id');
 
-		if ($this->mmodel->insert('sales_persons', $post_data)) {
-			$this->set_flash_data("New Manager Created Successfully");
-		} else {
-			$this->set_flash_data("Failed to add new manager", "alert-danger");
+		if ( $this->mmodel->insert('sales_persons', $post_data) > 0 ) {
 
+			// create a login for the sales staf
+			$login_data['id'] =  trim($this->mmodel->getGUID(), '{}');
+			$login_data['entity_id'] = $post_data['id'];
+			$login_data['username'] = $post_data['email'];
+			$login_data['mobile'] = $post_data['phone'];
+			$login_data['entity_type'] = EntityType::SalesRep;
+			$login_data['is_confirmed'] = false;
+			$login_data['is_deleted'] = false;
+			$login_data['is_active'] = false;
+			$login_data['updated'] = $now ;
+			$login_data['created'] = $now ;
+			$login_data['updated_by'] = $this->session->userdata('user_id');
+			$login_data['created_by'] = $this->session->userdata('user_id');
+			
+			if( $this->mmodel->insert('muliti_user_login', $login_data)) {
+				// write an Email to the manager
+				$token_data = array(
+	                'utype' => EntityType::SalesRep,
+	                'user_id' => $login_data['id'],// sales_persons.id
+	                'vars' => md5($post_data['email'])
+	            );
+
+	            $this->token->set_data($token_data);
+	            if($this->token->is_valid()){
+
+	                $this->token->create();
+
+	                //create email record: clinic welcome
+	                $email_data['sender_name'] = EmailSender::mynumber_info;
+	                $email_data['send_to'] = $post_data['email'];
+	                $email_data['send_schedule'] = date("Y-m-d H:i:s", strtotime("-1 sec"));
+	                $email_data['template_id'] = EmailTemplate::add_manager;
+	                $email_data['email_type_id'] = EmailType::reps;
+	                
+	                $vars['##NAME##'] = sprintf("%s %s", $post_data['first_name'], $post_Data['last_name']);
+	                $vars['##SUBJECT##'] = "Welcome on Board";
+	                $vars['##EMAILVERIFICATION_URL##'] = EmailConfigs::verification_url($this->token->data['id']);
+
+	                $email_data['content'] = json_encode($vars);
+	                $this->memail->set_data($email_data);
+	                $this->memail->create();
+	            }
+
+				$this->set_flash_data("New Manager Created Successfully");	
+			}else{
+				$this->set_flash_data("Failed create login for the manager", "alert-warning");
+			}
+
+		} else {
+			$this->set_flash_data(print_r($this->mmodel->the_error,true), "alert-danger");
 		}
+
 		redirect('managers');
 	}
 

@@ -6,7 +6,7 @@ $this->ci->load->database();
 
 if ( ! function_exists('checkLogin'))
 {
-//    protected $CI;
+   // protected $CI;
 
     function is_login(){
         $a =& get_instance();

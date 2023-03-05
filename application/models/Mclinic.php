@@ -89,7 +89,7 @@ class Mclinic extends CI_Model
             $email_data['send_to']=$this->post['email'];
             $email_data['template_id'] = EmailTemplate::clinic_register;
             $email_data['content']=NULL;
-            $email_data['email_type_id']=EmailType::new_user_email;
+            $email_data['email_type_id'] = EmailType::clinic;
 
         }
 
@@ -255,7 +255,7 @@ class Mclinic extends CI_Model
 			->set('is_verified', 1)
 			->set('verified_at', date("Y-m-d H:i:s"))
 			->set('updated', date("Y-m-d H:i:s"))
-			->set('updated_by', 'buddhimal')
+			->set('updated_by', $this->session->userdata('user_id') )
 			->where('id', $clinic_id)
 			->update($this->table);
 		return true;
