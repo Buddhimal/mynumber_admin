@@ -55,6 +55,7 @@
 											<td><?php echo $manager->nic; ?></td>
 											<td><?php echo $manager->has_email_verified ? "Yes" : "No"; ?></td>
 											<td align="right">
+												<a class="btn btn-xs btn-default" href="<?php echo trim(base_url(), '/'); ?>/manager/resetpassword/<?php echo $manager->id; ?>">Reset Password</a>
 												<a class="btn btn-sm btn-warning" href="<?php echo trim(base_url(), '/'); ?>/manager/update/<?php echo $manager->id; ?>">Edit</a>
 												<a class="btn btn-sm btn-danger" href="<?php echo trim(base_url(), '/'); ?>/manager/delete/<?php echo $manager->id; ?>">Delete</a>
 											</td>

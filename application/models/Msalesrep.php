@@ -43,4 +43,16 @@ class Msalesrep extends CI_Model
 			array('is_deleted'=> 0, 'is_active' => true, 'is_manager' => true)
 		)->get();
 	}
+
+	public function get_manager($manager_id){
+		return $this->db->select(
+			'id, salutation, first_name, last_name, nic, address, phone, 
+			email, nic_front, nic_back, agreement, has_email_verified, 
+			updated, created, updated_by, created_by'
+		)->from(
+			$this->table
+		)->where(
+			array('is_deleted'=> 0, 'is_active' => true, 'is_manager' => true, 'id'=> $manager_id)
+		)->get()->row();
+	}
 }

@@ -206,4 +206,26 @@ class Admin extends CI_Controller
 		redirect('managers');
 	}
 
+
+
+	public function reset_manager_password($manager_id){
+
+		
+		$data = array('is_valid_admin'=> false, 'manager' =>  null ) ;
+		
+		if( !empty($manager_id) && !is_null($manager_id) ){
+
+			// Also check in the database whether this user exists as a sales manager
+			$manager_record = $this->salesreps->get_manager($manager_id);
+			if(!empty($manager_record) && !is_null($manager_record) /* && count($manager_record) > 0*/ ){
+				$data['manager'] = $manager_record;
+				$data['is_valid_admin'] = true;
+			}
+		}
+
+		$this->load->view('header');
+		$this->load->view('managers/resetpassword', $data);
+		$this->load->view('footer');
+
+	}
 }
